@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -46,27 +46,27 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="logo">
-              <img src="assets/images/header-logo.png" alt="" />
+              <img src="assets/images/logoBlue.png" style={{width: "150px"}} alt="" />
             </div>
           </div>
           <div className="col-md-12">
             <div className="footer-menu">
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">How It Works ?</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/cart">Help</Link></li>
+                <li><Link to="/cart">Privacy Policy</Link></li>
+                <li><Link to="/cart">How It Works ?</Link></li>
+                <li><Link to="/cart">Contact Us</Link></li>
               </ul>
             </div>
           </div>
           <div className="col-md-12">
             <div className="social-icons">
               <ul>
-                <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i className="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i className="fa fa-rss"></i></a></li>
+                <li><Link to="/cart"><i className="fa fa-facebook"></i></Link></li>
+                <li><Link to="/cart"><i className="fa fa-twitter"></i></Link></li>
+                <li><Link to="/cart"><i className="fa fa-linkedin"></i></Link></li>
+                <li><Link to="/cart"><i className="fa fa-rss"></i></Link></li>
               </ul>
             </div>
           </div>
@@ -80,10 +80,8 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="copyright-text">
-              <p>Copyright &copy; 2019 Company Name 
-                
-                - Design: <a rel="nofollow" href="https://www.facebook.com/tooplate">Tooplate</a></p>
-            </div>
+              <p>Copyright &copy; 2019 Mcbee </p>
+              </div>
           </div>
         </div>
       </div>

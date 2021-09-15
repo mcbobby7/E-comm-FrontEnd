@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
-import Product from '../components/Product'
 import Message from '../components/Message'
-import Paginate from '../components/Paginate'
-import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import { listProducts } from '../actions/productActions'
 import ImageSlider from '../components/slider/slider'
@@ -21,7 +17,8 @@ const HomeScreen = ({ match }) => {
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
-  const { loading, error, products, page, pages } = productList
+  // const { loading, error, products, page, pages } = productList
+  const { loading, error, products } = productList
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber))

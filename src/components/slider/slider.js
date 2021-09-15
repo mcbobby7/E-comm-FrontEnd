@@ -9,41 +9,48 @@ class ImageSlider extends React.Component{
         this.state = {
             properties: props.properties,
             property: data.properties[0],
-            position: 1,
+            position: 2,
         }
     }
 
     nextProperty = () => {
-        if(this.state.position <( data.properties.length+1)){
+        console.log(this.state.position, this.state.properties.length-3);
+        if (this.state.position >  this.state.properties.length-4) {
             this.setState(prevState =>({
-                position: prevState.position+1
+                position: 1
+            }))
+        }else if(this.state.position <( data.properties.length+1)){
+            this.setState(prevState =>({
+                position: prevState.position+2
             }))
         }
     }
 
 
     prevProperty = () => {
-        if(this.state.position > 0){
+        if(this.state.position > 1){
             this.setState(prevState =>({
-                position: prevState.position-1
+                position: prevState.position-2
+            }))
+        }else if (this.state.position <= 1) {
+            this.setState(prevState =>({
+                position: this.state.properties.length-3
             }))
         }
     }
 
     render(){
-        const {properties, property} = this.state;
+        const {properties} = this.state;
         return(
             <Style num = {this.state.position}>
                 <button
                     onClick = {() => this.prevProperty()}
-                    disabled = {this.state.position === 0}
                     className = 'prev_button'>
                         <i className="fa fa-arrow-left"></i>
                 </button>
 
                 <button
                     onClick = {() => this.nextProperty()}
-                    disabled = {this.state.position === (properties.length-1)}
                     className = 'next_button'>
                         <i className="fa fa-arrow-right"></i>
                 </button>
@@ -52,7 +59,7 @@ class ImageSlider extends React.Component{
                     <div className = 'cards-slider-wrapper' style={{
                         'transform': `translateX(-${((this.state.position)*100)}%)`
                     }}>
-                        {properties.map(propertyItem => <Card key = {propertyItem._id}  propertyProp = {propertyItem} />)}
+                        {properties.map(propertyItem => <Card key= {propertyItem._id}  propertyProp = {propertyItem} />)}
                     </div>
                 </div>
             </Style>

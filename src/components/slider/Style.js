@@ -5,7 +5,7 @@ export const Style = styled.div`
     position: relative;
     width: 100%;
     height: 400px;
-    background: #FFFFFF08;
+    background: white;
     h1{
             position: absolute;
             margin-left: 1em;
@@ -21,7 +21,7 @@ export const Style = styled.div`
         height: 30px;
         border: none;
         border-radius: 50%;
-        left: -100px;
+        left: 5px;
         top: 50%;
         outline: none;
         cursor: pointer;
@@ -33,7 +33,7 @@ export const Style = styled.div`
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        right: -100px;
+        right: 5px;
         top: 50%;
         outline: none;
         cursor: pointer;

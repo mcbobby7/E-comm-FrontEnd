@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import SearchBox from './SearchBox'
 import { logout } from '../actions/userAction'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -31,7 +32,7 @@ const Header = () => {
       <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>My Store</Navbar.Brand>
+            <Navbar.Brand> <img style={{width: "150px"}} src="assets/images/logoWhite.png" alt="logo" /> </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
@@ -86,11 +87,11 @@ const Header = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="caption">
-              <h2>Welcome to My Store</h2>
+              <h2>MCBEE ONLINE STORE</h2>
               <div className="line-dec"></div>
               <p>Pixie HTML Template can be converted into your desired CMS theme. Total <strong>5 pages</strong> included. You can use this Bootstrap v4.1.3 layout for any CMS. .</p>
               <div className="main-button">
-                <a href="#">Order Now!</a>
+              <Link to="/cart">Order Now!</Link>
               </div>
             </div>
           </div>

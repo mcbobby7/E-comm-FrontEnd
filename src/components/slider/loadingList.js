@@ -1,7 +1,6 @@
 import React from 'react';
 import {Style} from './Style';
 import data from './data';
-import Card from './Card';
 import Loader from './loader'
 
 class LoadingList extends React.Component{
@@ -32,7 +31,7 @@ class LoadingList extends React.Component{
     }
 
     render(){
-        const {properties, property} = this.state;
+        const {properties} = this.state;
         return(
             <Style num = {this.state.position}>
                 <button

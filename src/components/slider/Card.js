@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleCard} from './Style'
-import Loader from './loader'
 import Product from '../Product'
 
 function Card ({propertyProp, sucess}){
