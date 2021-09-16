@@ -1,21 +1,21 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import SearchBox from './SearchBox'
-import { logout } from '../actions/userAction'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LinkContainer } from "react-router-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import SearchBox from "./SearchBox";
+import { logout } from "../actions/userAction";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
 
   return (
     <header>
@@ -28,29 +28,34 @@ const Header = () => {
         </div>
       </div>
     </div> */}
-    
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+
+      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand> <img style={{width: "150px"}} src="assets/images/logoWhite.png" alt="logo" /> </Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>
+              {" "}
+              <img
+                style={{ width: "150px" }}
+                src="assets/images/logoWhite.png"
+                alt="logo"
+              />{" "}
+            </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             <Route render={({ history }) => <SearchBox history={history} />} />
-            <Nav className='ml-auto'>
-            <LinkContainer to='/cart'>
-                <Nav.Link>
-                  Market
-                </Nav.Link>
+            <Nav className="ml-auto">
+              <LinkContainer to="/cart">
+                <Nav.Link>Market</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/cart'>
+              <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i>Cart
+                  <i className="fas fa-shopping-cart"></i>Cart
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id='username'>
-                  <LinkContainer to='/profile'>
+                <NavDropdown title={userInfo.name} id="username">
+                  <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
@@ -58,21 +63,21 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to='/login'>
+                <LinkContainer to="/login">
                   <Nav.Link>
-                    <i className='fas fa-user'></i>Sign in
+                    <i className="fas fa-user"></i>Sign in
                   </Nav.Link>
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/userlist'>
+                <NavDropdown title="Admin" id="adminmenu">
+                  <LinkContainer to="/admin/userlist">
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/productlist'>
+                  <LinkContainer to="/admin/productlist">
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
+                  <LinkContainer to="/admin/orderlist">
                     <NavDropdown.Item>Orders</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>
@@ -82,24 +87,28 @@ const Header = () => {
         </Container>
       </Navbar>
 
-    <div className="banner">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="caption">
-              <h2>MCBEE ONLINE STORE</h2>
-              <div className="line-dec"></div>
-              <p>Pixie HTML Template can be converted into your desired CMS theme. Total <strong>5 pages</strong> included. You can use this Bootstrap v4.1.3 layout for any CMS. .</p>
-              <div className="main-button">
-              <Link to="/cart">Order Now!</Link>
+      <div className="banner">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="caption">
+                <h2>MCBEE ONLINE STORE</h2>
+                <div className="line-dec"></div>
+                <p>
+                  Pixie HTML Template can be converted into your desired CMS
+                  theme. Total <strong>5 pages</strong> included. You can use
+                  this Bootstrap v4.1.3 layout for any CMS. .
+                </p>
+                <div className="main-button">
+                  <Link to="/cart">Order Now!</Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
