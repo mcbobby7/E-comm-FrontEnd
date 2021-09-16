@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../../components/Message";
-import Loader from "../../components/Loader";
-import FormContainer from "../../components/FormContainer";
 import { login } from "../../actions/userAction";
 import { makeStyles } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import axios from "axios";
-import { useHistory, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./style.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoginScreen = ({ location, history }) => {
-  const History = useHistory();
+  // const History = useHistory();
 
   const classes = useStyles();
   // create state variables for each input
@@ -59,8 +54,6 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
       toast.success("Login Successfull");
-    } else if (error) {
-      toast.error(error);
     }
   }, [history, userInfo, redirect, error]);
 
@@ -81,6 +74,11 @@ const LoginScreen = ({ location, history }) => {
     <div className="containers">
       <div className="form">
         <form className={classes.root} onSubmit={submitHandler}>
+          <img
+            style={{ width: "200px", marginBottom: "20px" }}
+            src="assets/images/logoWhite.png"
+            alt="logo"
+          />
           <h2>Login</h2>
           <label className="label">
             Email

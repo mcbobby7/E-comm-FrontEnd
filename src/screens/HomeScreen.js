@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-// import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
 import Meta from "../components/Meta";
 import { listProducts } from "../actions/productActions";
 import ImageSlider from "../components/slider/slider";
@@ -10,6 +8,7 @@ import Banner from "../components/banner/banner";
 import Title from "../components/title/title";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import PopUp from "../components/popUpMessage/popup";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -36,7 +35,10 @@ const HomeScreen = ({ match }) => {
           {loading ? (
             <LoadingList />
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <>
+              <LoadingList />
+              <PopUp message={error} error={false} />
+            </>
           ) : (
             <ImageSlider properties={products} />
           )}
@@ -46,7 +48,9 @@ const HomeScreen = ({ match }) => {
           {loading ? (
             <LoadingList />
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <>
+              <LoadingList />
+            </>
           ) : (
             <ImageSlider properties={products} />
           )}
@@ -57,7 +61,9 @@ const HomeScreen = ({ match }) => {
           {loading ? (
             <LoadingList />
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <>
+              <LoadingList />
+            </>
           ) : (
             <ImageSlider properties={products} />
           )}
@@ -67,7 +73,9 @@ const HomeScreen = ({ match }) => {
           {loading ? (
             <LoadingList />
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <>
+              <LoadingList />
+            </>
           ) : (
             <ImageSlider properties={products} />
           )}
@@ -79,7 +87,9 @@ const HomeScreen = ({ match }) => {
           {loading ? (
             <LoadingList />
           ) : error ? (
-            <Message variant="danger">{error}</Message>
+            <>
+              <LoadingList />
+            </>
           ) : (
             <ImageSlider properties={products} />
           )}

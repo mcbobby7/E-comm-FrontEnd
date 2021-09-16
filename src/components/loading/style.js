@@ -18,7 +18,7 @@ export const Box = styled.div`
   }
   .load {
     width: 200px;
-    margin: 5% auto;
+    margin: 3% auto;
   }
   .lds-ellipsis div:nth-child(1) {
     left: 8px;
