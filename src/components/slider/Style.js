@@ -87,11 +87,11 @@ export const Skeleton = styled.div`
     flex-direction: column;
     justify-content: center;
     max-width: 400px;
-    height: 250px;
+    height: 325px;
     margin: 20px;
     margin-top: 0;
     background-color: #e2e8f0;
-    width: 210px;
+    width: 230px;
     box-shadow: 0 9px 33px rgba(0, 0, 0, 0.07);
   }
 
@@ -107,7 +107,7 @@ export const Skeleton = styled.div`
   .card-img,
   .skeleton-img {
     width: 100%;
-    height: 120px;
+    height: 180px;
     margin-top: -57px;
     margin-bottom: 20px;
   }

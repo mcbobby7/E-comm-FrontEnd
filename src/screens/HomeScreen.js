@@ -9,6 +9,7 @@ import Title from "../components/title/title";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PopUp from "../components/popUpMessage/popup";
+import { ToastContainer } from "react-toastify";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -30,6 +31,7 @@ const HomeScreen = ({ match }) => {
     <>
       <Header />
       <Meta />
+      <ToastContainer />
       <div style={{ padding: "5%" }}>
         <>
           <Title title="LATEST PRODUCTS" />

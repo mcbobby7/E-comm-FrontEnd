@@ -2,15 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Meta from "../../components/Meta";
 import { listProducts } from "../../actions/productActions";
-import ImageSlider from "../../components/slider/slider";
-import LoadingList from "../../components/slider/loadingList";
-import Banner from "../../components/banner/banner";
-import Title from "../../components/title/title";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import PopUp from "../../components/popUpMessage/popup";
 import Nav from "../../components/nav/nav";
-import { Link } from "react-router-dom";
 import { Box } from "./style";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import AppsIcon from "@material-ui/icons/Apps";
@@ -20,20 +13,12 @@ import Slider from "@material-ui/core/Slider";
 import MenuItem from "@material-ui/core/MenuItem";
 import Cards from "../../components/slider/Card";
 import GridCard from "../../components/slider/gridCard";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import LastPageIcon from "@material-ui/icons/LastPage";
-import {
-  Row,
-  Col,
-  ListGroup,
-  Image,
-  Form,
-  Button,
-  Card,
-} from "react-bootstrap";
-import Message from "../../components/Message";
-import { addToCart, removeFromCart } from "../../actions/cartAction";
+import { Row, Col, ListGroup, Card } from "react-bootstrap";
+import { addToCart } from "../../actions/cartAction";
 import Paginate from "../../components/Paginate";
+import { ToastContainer } from "react-toastify";
+import PopUp from "../../components/popUpMessage/popup";
+import Loader from "../../components/slider/loading2";
 
 function valuetext(value) {
   return `${value}°C`;
@@ -43,8 +28,6 @@ const Search = ({ match, location, history }) => {
   const keyword = match.params.keyword;
   const pageNumber = match.params.pageNumber || 1;
   const productId = match.params.id;
-  const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
 
   const qty = location.search ? Number(location.search.split("=")[1]) : 1;
   const dispatch = useDispatch();
@@ -55,7 +38,8 @@ const Search = ({ match, location, history }) => {
   const [show, setShow] = React.useState(false);
   const [cartegory, setCartegory] = React.useState("");
   const [value, setValue] = React.useState([10000, 200000]);
-  const [layout, setLayout] = React.useState("grid");
+  const [layout, setLayout] = React.useState("list");
+  const [result, setResult] = React.useState(true);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -72,7 +56,11 @@ const Search = ({ match, location, history }) => {
     }
     setShow(true);
     setFilteredData([...data]);
-    console.log(filteredData);
+    if (filteredData.length === 0) {
+      setResult(false);
+    } else {
+      setResult(true);
+    }
   };
 
   const handleClick = (event) => {
@@ -105,6 +93,11 @@ const Search = ({ match, location, history }) => {
         return b.price - a.price;
       });
     }
+    if (filteredData.length === 0) {
+      setResult(false);
+    } else {
+      setResult(true);
+    }
     setAnchorEl(null);
   };
 
@@ -115,9 +108,6 @@ const Search = ({ match, location, history }) => {
     }
   }, [dispatch, keyword, pageNumber, productId, qty]);
 
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
-  };
   const setCart = (cart) => {
     setCartegory(cart);
     if (filteredData.length === 0) {
@@ -136,14 +126,11 @@ const Search = ({ match, location, history }) => {
     console.log(filteredData);
   };
 
-  const checkoutHandler = () => {
-    history.push("/login?redirect=shipping");
-  };
-
   return (
     <>
       <Meta />
       <Nav />
+      <ToastContainer />
       <Box style={{ padding: "5%" }}>
         <Row>
           <Col md={8}>
@@ -207,40 +194,84 @@ const Search = ({ match, location, history }) => {
                       justifyContent: "space-evenly",
                     }}
                   >
-                    {layout === "grid" ? (
+                    {!result && filteredData === [] && (
+                      <div>No result found for this filter</div>
+                    )}
+                    {loading ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          justifyContent: "space-evenly",
+                        }}
+                      >
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                        <Loader />
+                      </div>
+                    ) : error ? (
                       <>
-                        {show &&
-                          filteredData.map((propertyItem) => (
-                            <GridCard
-                              key={propertyItem._id}
-                              propertyProp={propertyItem}
-                            />
-                          ))}
-                        {!show &&
-                          products.map((propertyItem) => (
-                            <GridCard
-                              key={propertyItem._id}
-                              propertyProp={propertyItem}
-                            />
-                          ))}
+                        <div
+                          style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-evenly",
+                          }}
+                        >
+                          <Loader />
+                          <Loader />
+                          <Loader />
+                          <Loader />
+                          <Loader />
+                          <Loader />
+                        </div>
+                        <PopUp message={error} error={true} />
                       </>
                     ) : (
                       <>
-                        {" "}
-                        {show &&
-                          filteredData.map((propertyItem) => (
-                            <Cards
-                              key={propertyItem._id}
-                              propertyProp={propertyItem}
-                            />
-                          ))}
-                        {!show &&
-                          products.map((propertyItem) => (
-                            <Cards
-                              key={propertyItem._id}
-                              propertyProp={propertyItem}
-                            />
-                          ))}
+                        {layout === "grid" ? (
+                          <>
+                            {show &&
+                              filteredData.map((propertyItem) => (
+                                <GridCard
+                                  key={propertyItem._id}
+                                  propertyProp={propertyItem}
+                                />
+                              ))}
+                            {!show &&
+                              products.map((propertyItem) => (
+                                <GridCard
+                                  key={propertyItem._id}
+                                  propertyProp={propertyItem}
+                                />
+                              ))}
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            {show &&
+                              filteredData.map((propertyItem) => (
+                                <Cards
+                                  key={propertyItem._id}
+                                  propertyProp={propertyItem}
+                                />
+                              ))}
+                            {!show &&
+                              products.map((propertyItem) => (
+                                <Cards
+                                  key={propertyItem._id}
+                                  propertyProp={propertyItem}
+                                />
+                              ))}
+                          </>
+                        )}
                       </>
                     )}
                   </div>

@@ -20,6 +20,7 @@ import "./assets/css/flex-slider.css";
 import "./assets/css/fontawesome.css";
 // import './assets/css/owl.css'
 import "./assets/css/tooplate-main.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (

@@ -1,24 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import Rating from "../Rating";
-import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import FileCopyIcon from "@material-ui/icons/FileCopyOutlined";
-import SaveIcon from "@material-ui/icons/Save";
-import PrintIcon from "@material-ui/icons/Print";
-import ShareIcon from "@material-ui/icons/Share";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-
-const actions = [
-  { icon: <FileCopyIcon />, name: "Copy Link" },
-  { icon: <ShareIcon />, name: "Share" },
-  { icon: <ShoppingCartIcon />, name: "Add to Cart" },
-];
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../actions/cartAction";
+import { toast } from "react-toastify";
 
 const GridCard = ({ propertyProp }) => {
+  const [links, setLinks] = React.useState("");
+
+  useEffect(() => {
+    setLinks(`http://localhost:3000/product/${propertyProp._id}`);
+  }, [propertyProp._id]);
+
+  const dispatch = useDispatch();
+
+  const actions = [
+    {
+      icon: (
+        <FileCopyIcon
+          onClick={() => [
+            navigator.clipboard.writeText(`${links}`),
+            toast("Link Copied to Clipboard"),
+          ]}
+          style={{ width: "16px" }}
+        />
+      ),
+      name: "Copy Link",
+    },
+    {
+      icon: (
+        <ShoppingCartIcon
+          onClick={() => [
+            dispatch(addToCart(`${propertyProp._id}`, 1)),
+            toast("Product Added to Cart"),
+          ]}
+          style={{ width: "16px" }}
+        />
+      ),
+      name: "Add to Cart",
+    },
+  ];
+
   return (
     <Card
       className="my-3 p-3 rounded"

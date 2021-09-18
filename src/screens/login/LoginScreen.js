@@ -8,7 +8,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./style.css";
-import "react-toastify/dist/ReactToastify.css";
 import Loading from "../../components/loading/loading";
 
 const useStyles = makeStyles((theme) => ({
