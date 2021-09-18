@@ -20,6 +20,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList);
   // const { loading, error, products, page, pages } = productList
   const { loading, error, products } = productList;
+  console.log(products);
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
@@ -37,7 +38,7 @@ const HomeScreen = ({ match }) => {
           ) : error ? (
             <>
               <LoadingList />
-              <PopUp message={error} error={false} />
+              <PopUp message={error} error={true} />
             </>
           ) : (
             <ImageSlider properties={products} />

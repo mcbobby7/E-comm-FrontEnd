@@ -5,6 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import SearchBox from "../SearchBox";
 import { logout } from "../../actions/userAction";
+import logo from "./logoWhite.png";
 
 const Navbars = () => {
   const dispatch = useDispatch();
@@ -23,11 +24,7 @@ const Navbars = () => {
           <LinkContainer to="/">
             <Navbar.Brand>
               {" "}
-              <img
-                style={{ width: "150px" }}
-                src="assets/images/logoWhite.png"
-                alt="logo"
-              />{" "}
+              <img style={{ width: "150px" }} src={logo} alt="logo" />{" "}
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

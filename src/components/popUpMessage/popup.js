@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TransitionsModal({ message, error }) {
+  const classes = useStyles();
   const classNamees = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -46,42 +47,44 @@ export default function TransitionsModal({ message, error }) {
         }}
       >
         <Fade in={open}>
-          <Box>
-            <div className="box paper">
-              {!error && (
-                <img
-                  className="icns"
-                  src="assets/icons/success.gif"
-                  alt="success"
-                />
-              )}
-              {error && (
-                <img
-                  className="icns"
-                  src="assets/icons/error.gif"
-                  alt="error"
-                />
-              )}
-
-              <div className="image">
+          <div className={classes.paper}>
+            <Box>
+              <div className="box paper">
                 {!error && (
                   <img
-                    className="err"
-                    src="assets/icons/success2.svg"
+                    className="icns"
+                    src="assets/icons/success.gif"
                     alt="success"
                   />
                 )}
                 {error && (
                   <img
-                    className="err"
-                    src="assets/icons/error2.svg"
+                    className="icns"
+                    src="assets/icons/error.gif"
                     alt="error"
                   />
                 )}
+
+                <div className="image">
+                  {!error && (
+                    <img
+                      className="err"
+                      src="assets/icons/success2.svg"
+                      alt="success"
+                    />
+                  )}
+                  {error && (
+                    <img
+                      className="err"
+                      src="assets/icons/error2.svg"
+                      alt="error"
+                    />
+                  )}
+                </div>
+                <div className="error">{message}</div>
               </div>
-              <div className="error">{message}</div>
-            </div>
-          </Box>
+            </Box>
+          </div>
         </Fade>
       </Modal>
     </div>

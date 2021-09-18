@@ -67,16 +67,15 @@ export const Style = styled.div`
 export const StyleCard = styled.div`
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    color: red;
-    margin: auto;
     width: 350px;
     height: 400px;
+    margin: auto 20px;
     flex: 1;
-    transform: scale(0.7);
+    /* transform: scale(0.7);
     transition: opacity 0.3s linear,
-      transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955); */
     :hover {
-      box-shadow: 0 16px 24px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2);
     }
   }
 `;

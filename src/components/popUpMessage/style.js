@@ -5,6 +5,7 @@ export const Box = styled.div`
   height: 80vh;
   border: none;
   outline: none;
+  width: 100%;
   .box {
     position: relative;
     display: -webkit-box;
@@ -47,10 +48,9 @@ export const Box = styled.div`
     font-size: 16px;
     text-align: center;
     color: #343a40;
-    width: 90%;
+    width: 400px;
     margin: auto;
     margin-top: 20px;
-    margin-left: 40px;
   }
 
   .box button {
