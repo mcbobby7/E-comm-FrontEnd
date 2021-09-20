@@ -10,6 +10,10 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PopUp from "../components/popUpMessage/popup";
 import { ToastContainer } from "react-toastify";
+import banner9 from "./images/banner9.png";
+import banner5 from "./images/banner5.jpg";
+import banner7 from "./images/banner7.jpg";
+import banner8 from "./images/banner8.jpg";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -24,6 +28,11 @@ const HomeScreen = ({ match }) => {
   console.log(products);
 
   useEffect(() => {
+    let data = "20210917";
+    let newDate =
+      data.slice(0, 4) + "/" + data.slice(4, 6) + "/" + data.slice(6, 8);
+    console.log(newDate);
+    console.log(new Date(newDate));
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
@@ -47,7 +56,7 @@ const HomeScreen = ({ match }) => {
           )}
         </>
         <>
-          <Title title="FEATURED PRODUCTS" />
+          <Title title="SPORTS" />
           {loading ? (
             <LoadingList />
           ) : error ? (
@@ -58,7 +67,7 @@ const HomeScreen = ({ match }) => {
             <ImageSlider properties={products} />
           )}
         </>
-        <Banner img="assets/images/banner5.jpg" />
+        <Banner img={banner5} />
         <>
           <Title title="TOP SELLING ITEMS" />
           {loading ? (
@@ -83,10 +92,72 @@ const HomeScreen = ({ match }) => {
             <ImageSlider properties={products} />
           )}
         </>
-        <Banner img="assets/images/banner7.jpg" />
+        <Banner img={banner7} />
 
         <>
-          <Title title="WEARS" />
+          <Title title="MUSICS" />
+          {loading ? (
+            <LoadingList />
+          ) : error ? (
+            <>
+              <LoadingList />
+            </>
+          ) : (
+            <ImageSlider properties={products} />
+          )}
+        </>
+        <>
+          <Title title="TOYS" />
+          {loading ? (
+            <LoadingList />
+          ) : error ? (
+            <>
+              <LoadingList />
+            </>
+          ) : (
+            <ImageSlider properties={products} />
+          )}
+        </>
+        <Banner img={banner8} />
+        <>
+          <Title title="FASHION" />
+          {loading ? (
+            <LoadingList />
+          ) : error ? (
+            <>
+              <LoadingList />
+            </>
+          ) : (
+            <ImageSlider properties={products} />
+          )}
+        </>
+        <>
+          <Title title="HEALTH" />
+          {loading ? (
+            <LoadingList />
+          ) : error ? (
+            <>
+              <LoadingList />
+            </>
+          ) : (
+            <ImageSlider properties={products} />
+          )}
+        </>
+        <Banner img={banner9} />
+        <>
+          <Title title="FOOD" />
+          {loading ? (
+            <LoadingList />
+          ) : error ? (
+            <>
+              <LoadingList />
+            </>
+          ) : (
+            <ImageSlider properties={products} />
+          )}
+        </>
+        <>
+          <Title title="AUTOMOBILE" />
           {loading ? (
             <LoadingList />
           ) : error ? (

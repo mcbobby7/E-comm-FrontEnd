@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "./images/logoBlue.png";
 
 const Footer = () => {
   return (
@@ -23,7 +24,7 @@ const Footer = () => {
                 <div className="container">
                   <form id="subscribe" action="" method="get">
                     <div className="row">
-                      <div className="col-md-7">
+                      <div className="col-md-7" style={{ marginTop: "20px" }}>
                         <fieldset>
                           <input
                             name="email"
@@ -34,7 +35,7 @@ const Footer = () => {
                           />
                         </fieldset>
                       </div>
-                      <div className="col-md-5">
+                      <div className="col-md-5" style={{ marginLeft: "-20px" }}>
                         <fieldset>
                           <button
                             type="submit"
@@ -59,11 +60,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="logo">
-                <img
-                  src="assets/images/logoBlue.png"
-                  style={{ width: "150px" }}
-                  alt=""
-                />
+                <img src={logo} style={{ width: "150px" }} alt="" />
               </div>
             </div>
             <div className="col-md-12">
@@ -73,16 +70,13 @@ const Footer = () => {
                     <Link to="/">Home</Link>
                   </li>
                   <li>
-                    <Link to="/cart">Help</Link>
+                    <Link to="/">Help</Link>
                   </li>
                   <li>
-                    <Link to="/cart">Privacy Policy</Link>
+                    <Link to="/">Privacy Policy</Link>
                   </li>
                   <li>
-                    <Link to="/cart">How It Works ?</Link>
-                  </li>
-                  <li>
-                    <Link to="/cart">Contact Us</Link>
+                    <Link to="/">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -91,22 +85,22 @@ const Footer = () => {
               <div className="social-icons">
                 <ul>
                   <li>
-                    <Link to="/cart">
+                    <Link to="/">
                       <i className="fa fa-facebook"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/cart">
+                    <Link to="/">
                       <i className="fa fa-twitter"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/cart">
+                    <Link to="/">
                       <i className="fa fa-linkedin"></i>
                     </Link>
                   </li>
                   <li>
-                    <Link to="/cart">
+                    <Link to="/">
                       <i className="fa fa-rss"></i>
                     </Link>
                   </li>

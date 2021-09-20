@@ -4,6 +4,10 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Box } from "./style";
+import error1 from "./error.gif";
+import error2 from "./error2.svg";
+import success1 from "./success.gif";
+import success2 from "./success2.svg";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -51,35 +55,15 @@ export default function TransitionsModal({ message, error }) {
             <Box>
               <div className="box paper">
                 {!error && (
-                  <img
-                    className="icns"
-                    src="assets/icons/success.gif"
-                    alt="success"
-                  />
+                  <img className="icns" src={success1} alt="success" />
                 )}
-                {error && (
-                  <img
-                    className="icns"
-                    src="assets/icons/error.gif"
-                    alt="error"
-                  />
-                )}
+                {error && <img className="icns" src={error1} alt="error" />}
 
                 <div className="image">
                   {!error && (
-                    <img
-                      className="err"
-                      src="assets/icons/success2.svg"
-                      alt="success"
-                    />
+                    <img className="err" src={success2} alt="success" />
                   )}
-                  {error && (
-                    <img
-                      className="err"
-                      src="assets/icons/error2.svg"
-                      alt="error"
-                    />
-                  )}
+                  {error && <img className="err" src={error2} alt="error" />}
                 </div>
                 <div className="error">{message}</div>
               </div>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Banner = styled.div`
   .bannerDiv {
     background-image: url(${(props) => props.img});
-    height: 250px;
+    height: 300px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
