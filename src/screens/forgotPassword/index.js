@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../actions/userAction";
+import { forgot_password } from "../../actions/userAction";
 import { makeStyles } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -34,40 +34,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginScreen = ({ location, history }) => {
+const Forgot = ({ location, history }) => {
   // const History = useHistory();
 
   const classes = useStyles();
   // create state variables for each input
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [mode, setMode] = useState("password");
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
-
-  const redirect = location.search ? location.search.split("=")[1] : "/";
-
-  useEffect(() => {
-    if (userInfo) {
-      history.push(redirect);
-      toast.success("Login Successfull");
-    }
-  }, [history, userInfo, redirect, error]);
+  const forgotPassword = useSelector((state) => state.forgotPassword);
+  const { loading, error, userInfo } = forgotPassword;
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
-  };
-
-  const handleClick = () => {
-    if (mode === "password") {
-      setMode("text");
-    } else {
-      setMode("password");
-    }
+    dispatch(forgot_password(email));
   };
 
   return (
@@ -79,7 +60,7 @@ const LoginScreen = ({ location, history }) => {
             src={logo}
             alt="logo"
           />
-          <h2>Login</h2>
+          <h2>Forgot Password</h2>
           <label className="label">
             Email
             <input
@@ -91,30 +72,14 @@ const LoginScreen = ({ location, history }) => {
               placeholder="Email"
             />
           </label>
-          <label className="label">
-            Password
-            <input
-              type={mode}
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="input"
-              placeholder="Password"
-            />
-            {mode === "password" ? (
-              <VisibilityIcon className="icon" onClick={handleClick} />
-            ) : (
-              <VisibilityOff className="icon" onClick={handleClick} />
-            )}
-          </label>
           {}
           <ToastContainer />
           <div className="write">
-            <NavLink to="/auth/forgot-password" className="link">
-              Forgot password?
-            </NavLink>
             <NavLink to="/auth/signup" className="link">
-              Sign up
+              Sign Up
+            </NavLink>
+            <NavLink to="/auth/login" className="link">
+              Login
             </NavLink>
           </div>
 
@@ -169,4 +134,4 @@ const LoginScreen = ({ location, history }) => {
   );
 };
 
-export default LoginScreen;
+export default Forgot;

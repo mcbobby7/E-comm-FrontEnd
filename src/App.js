@@ -4,6 +4,9 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/cart/CartScreen";
 import LoginScreen from "./screens/login/LoginScreen";
+import SignUpScreen from "./screens/signUp/index";
+import Forgot from "./screens/forgotPassword/index";
+import Reset from "./screens/resetPassword/index";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/profile/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";
@@ -32,6 +35,10 @@ const App = () => {
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/login" component={LoginScreen} />
+          <Route path="/auth/login" component={LoginScreen} />
+          <Route path="/auth/signup" component={SignUpScreen} />
+          <Route path="/auth/reset-password/:token" component={Reset} />
+          <Route path="/auth/forgot-password" component={Forgot} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/profile" component={ProfileScreen} />
           <Route path="/product/:id" component={ProductScreen} />

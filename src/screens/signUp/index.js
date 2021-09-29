@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../actions/userAction";
+import { register } from "../../actions/userAction";
 import { makeStyles } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -34,32 +34,33 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginScreen = ({ location, history }) => {
+const SignUpScreen = ({ location, history }) => {
   // const History = useHistory();
 
   const classes = useStyles();
   // create state variables for each input
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [mode, setMode] = useState("password");
 
   const dispatch = useDispatch();
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
       history.push(redirect);
-      toast.success("Login Successfull");
+      toast.success("Registration Successfull");
     }
   }, [history, userInfo, redirect, error]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(register(name, email, password));
   };
 
   const handleClick = () => {
@@ -79,7 +80,18 @@ const LoginScreen = ({ location, history }) => {
             src={logo}
             alt="logo"
           />
-          <h2>Login</h2>
+          <h2>Sign Up</h2>
+          <label className="label">
+            Email
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="input"
+              placeholder="Name"
+            />
+          </label>
           <label className="label">
             Email
             <input
@@ -113,8 +125,8 @@ const LoginScreen = ({ location, history }) => {
             <NavLink to="/auth/forgot-password" className="link">
               Forgot password?
             </NavLink>
-            <NavLink to="/auth/signup" className="link">
-              Sign up
+            <NavLink to="/auth/login" className="link">
+              Login
             </NavLink>
           </div>
 
@@ -169,4 +181,4 @@ const LoginScreen = ({ location, history }) => {
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;
