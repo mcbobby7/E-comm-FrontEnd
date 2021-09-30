@@ -62,9 +62,17 @@ export const Style = styled.div`
     transform: scale(1);
     opacity: 1;
   }
+  @media screen and (max-width: 900px) {
+    .sys {
+      display: none;
+    }
+  }
 `;
 
 export const StyleCard = styled.div`
+  @media screen and (max-width: 900px) {
+    margin-bottom: -70px;
+  }
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 350px;
@@ -78,8 +86,25 @@ export const StyleCard = styled.div`
       box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.2);
     }
   }
+  @media screen and (max-width: 900px) {
+    .card {
+      transform: scale(0.7);
+      transition: opacity 0.3s linear,
+        transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      margin: -20px;
+    }
+  }
 `;
 export const Skeleton = styled.div`
+  @media screen and (max-width: 900px) {
+    /* .card { */
+    transform: scale(0.7);
+    transition: opacity 0.3s linear,
+      transform 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    margin: -20px;
+    margin-bottom: -50px;
+    /* } */
+  }
   margin-top: 90px;
   .card,
   .skeleton {

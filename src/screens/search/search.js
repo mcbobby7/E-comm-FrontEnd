@@ -143,6 +143,7 @@ const Search = ({ match, location, history }) => {
                     <div className="shop">Shop online</div>
                     <div className="point">
                       <ViewListIcon
+                        className="ics"
                         onClick={() => setLayout("grid")}
                         style={{
                           color: layout === "grid" && "#3A8BCD",

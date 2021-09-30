@@ -5,7 +5,6 @@ import { reset_password } from "../../actions/userAction";
 import { makeStyles } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "./style.css";
 import Loading from "../../components/loading/loading";
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Forgot = ({ location, history, match }) => {
+const Forgot = ({ match }) => {
   // const History = useHistory();
 
   const classes = useStyles();
@@ -47,7 +46,7 @@ const Forgot = ({ location, history, match }) => {
   const dispatch = useDispatch();
 
   const resetPassword = useSelector((state) => state.resetPassword);
-  const { loading, error } = resetPassword;
+  const { loading } = resetPassword;
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
-import Loader from "../components/Loader";
+import Loader from "../components/dash-loader/loader";
 import Meta from "../components/Meta";
 import Nav from "../components/nav/nav";
 import Footer from "../components/Footer";
@@ -75,12 +75,15 @@ const ProductScreen = ({ history, match }) => {
           Go Back
         </Link>
         {loading ? (
-          <Loader />
+          <>
+            <Loader />
+            <div style={{ height: "700px" }}></div>
+          </>
         ) : error ? (
           <Message variant="danger">{error}</Message>
         ) : (
           <>
-            <Meta title={product.name} />
+            <Meta title={product.name} description={product.description} />
             <Row>
               <Col md={6}>
                 <Image src={product.image} alt={product.name} fluid />

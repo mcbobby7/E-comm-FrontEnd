@@ -14,28 +14,16 @@ class ImageSlider extends React.Component {
   }
 
   nextProperty = () => {
-    console.log(this.state.position, this.state.properties.length - 3);
-    if (this.state.position > this.state.properties.length - 4) {
-      this.setState((prevState) => ({
-        position: 1,
-      }));
-    } else if (this.state.position < data.properties.length + 1) {
-      this.setState((prevState) => ({
-        position: prevState.position + 1,
-      }));
-    }
+    console.log(this.state.position, this.state.properties.length);
+    this.setState((prevState) => ({
+      position: this.state.position + 1,
+    }));
   };
 
   prevProperty = () => {
-    if (this.state.position > 1) {
-      this.setState((prevState) => ({
-        position: prevState.position - 2,
-      }));
-    } else if (this.state.position <= 1) {
-      this.setState((prevState) => ({
-        position: this.state.properties.length - 3,
-      }));
-    }
+    this.setState((prevState) => ({
+      position: prevState.position - 1,
+    }));
   };
 
   render() {

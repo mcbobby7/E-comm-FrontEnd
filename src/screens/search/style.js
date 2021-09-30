@@ -10,4 +10,9 @@ export const Box = styled.div`
   .ic {
     margin-left: 10px;
   }
+  @media screen and (max-width: 600px) {
+    .ics {
+      display: none;
+    }
+  }
 `;

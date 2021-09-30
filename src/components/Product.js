@@ -12,7 +12,7 @@ const Product = ({ product }) => {
   const [links, setLinks] = React.useState("");
 
   useEffect(() => {
-    setLinks(`http://localhost:3000/product/${product._id}`);
+    setLinks(`http://mcbee.herokuapp.com/product/${product._id}`);
   }, [product._id]);
 
   const dispatch = useDispatch();

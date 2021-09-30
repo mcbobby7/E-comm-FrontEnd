@@ -6,7 +6,7 @@ import CartScreen from "./screens/cart/CartScreen";
 import LoginScreen from "./screens/login/LoginScreen";
 import SignUpScreen from "./screens/signUp/index";
 import Forgot from "./screens/forgotPassword/index";
-import Reset from "./screens/resetPassword/index";
+import Reset from "./screens/forgotPassword copy/index";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/profile/ProfileScreen";
 import ShippingScreen from "./screens/ShippingScreen";

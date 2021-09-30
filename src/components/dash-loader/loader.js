@@ -4,10 +4,10 @@ import { Box } from "./style";
 function Loading() {
   return (
     <Box>
-      <div class="al">
-        <div class="as">
-          <div class="lds-hourglass"></div>
-          <div class="lo">Loading...</div>
+      <div className="al">
+        <div className="as">
+          <div className="lds-hourglass"></div>
+          <div className="lo">Loading...</div>
         </div>
       </div>
     </Box>

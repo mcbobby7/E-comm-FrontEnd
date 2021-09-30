@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { forgot_password } from "../../actions/userAction";
 import { makeStyles } from "@material-ui/core";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { NavLink } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "./style.css";
 import Loading from "../../components/loading/loading";
 import logo from "../images/logoWhite.png";
@@ -34,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Forgot = ({ location, history }) => {
+const Forgot = () => {
   // const History = useHistory();
 
   const classes = useStyles();
@@ -44,7 +42,7 @@ const Forgot = ({ location, history }) => {
   const dispatch = useDispatch();
 
   const forgotPassword = useSelector((state) => state.forgotPassword);
-  const { loading, error, userInfo } = forgotPassword;
+  const { loading } = forgotPassword;
 
   const submitHandler = (e) => {
     e.preventDefault();
