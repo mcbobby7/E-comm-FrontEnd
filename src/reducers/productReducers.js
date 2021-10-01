@@ -23,6 +23,9 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
+  PRODUCT_CAT_REQUEST,
+  PRODUCT_CAT_SUCCESS,
+  PRODUCT_CAT_FAIL,
 } from "../constants/productConstants";
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -128,6 +131,48 @@ export const productTopRatedReducer = (state = { products: [] }, action) => {
       return { loading: false, products: action.payload };
     case PRODUCT_TOP_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productCatReducer = (
+  state = {
+    products: [],
+    Top: [],
+    Latest: [],
+    Sports: [],
+    Electronics: [],
+    Music: [],
+    Toys: [],
+    Fashion: [],
+    Health: [],
+    Food: [],
+    Automobile: [],
+  },
+  action
+) => {
+  switch (action.type) {
+    case "PRODUCT_CAT_REQUEST1":
+      return { Latestloading: true, Latest: [] };
+    case "PRODUCT_CAT_SUCCESS1":
+      return {
+        Latestloading: false,
+        Latest: action.payload,
+      };
+    case "PRODUCT_CAT_FAIL1":
+      return { Latestloading: false, Latesterror: action.payload };
+
+    case "PRODUCT_CAT_REQUEST2":
+      return { Sportsloading: true, Sports: [] };
+    case "PRODUCT_CAT_SUCCESS2":
+      return {
+        Sportsloading: false,
+        Sports: action.payload,
+      };
+    case "PRODUCT_CAT_FAIL2":
+      return { Sportsloading: false, Sportserror: action.payload };
+
     default:
       return state;
   }

@@ -21,7 +21,11 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
+  PRODUCT_CAT_REQUEST,
+  PRODUCT_CAT_SUCCESS,
+  PRODUCT_CAT_FAIL,
 } from "../constants/productConstants";
+import { toast } from "react-toastify";
 
 export const listProducts =
   (keyword = "", pageNumber = "") =>
@@ -219,6 +223,59 @@ export const listTopProducts = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PRODUCT_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listCatProducts = (type) => async (dispatch) => {
+  try {
+    if (type === "Latest") {
+      dispatch({ type: "PRODUCT_CAT_REQUEST1", mode: type });
+
+      const { data } = await axios.get(`/api/products/categories/${type}`);
+
+      if (data.hasError === false) {
+        dispatch({
+          type: "PRODUCT_CAT_SUCCESS1",
+          payload: data.products,
+          mode: type,
+        });
+      } else {
+        toast.error(data.message);
+        dispatch({
+          type: "PRODUCT_CAT_FAIL1",
+          payload: data.message,
+          mode: type,
+        });
+      }
+    } else if (type === "Sports ") {
+      dispatch({ type: "PRODUCT_CAT_REQUEST2", mode: type });
+
+      const { data } = await axios.get(`/api/products/categories/${type}`);
+
+      if (data.hasError === false) {
+        dispatch({
+          type: "PRODUCT_CAT_SUCCESS2",
+          payload: data.products,
+          mode: type,
+        });
+      } else {
+        toast.error(data.message);
+        dispatch({
+          type: "PRODUCT_CAT_FAIL2",
+          payload: data.message,
+          mode: type,
+        });
+      }
+    }
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_CAT_FAIL,
+      mode: type,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -13,11 +13,16 @@ import {
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 import Nav from "../../components/nav/nav";
 import Footer from "../../components/Footer";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
 
   const [name, setName] = useState("");
+  const [cat, setCat] = useState([]);
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
@@ -39,6 +44,15 @@ const ProductEditScreen = ({ match, history }) => {
   } = productUpdate;
 
   useEffect(() => {
+    axios
+      .get("/api/products/categories")
+      .then((res) => {
+        console.log(res.data);
+        setCat(res.data.categories);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       history.push("/admin/productlist");
@@ -180,13 +194,19 @@ const ProductEditScreen = ({ match, history }) => {
 
               <Form.Group controlId="category">
                 <Form.Label>Category</Form.Label>
+
                 <Form.Control
-                  style={{ backgroundColor: "white" }}
-                  type="text"
-                  placeholder="Enter category"
+                  as="select"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                ></Form.Control>
+                  style={{ backgroundColor: "white", cursor: "pointer" }}
+                >
+                  {cat.map((cats) => (
+                    <option style={{ cursor: "pointer" }} value={cats.name}>
+                      {cats.name}
+                    </option>
+                  ))}
+                </Form.Control>
               </Form.Group>
 
               <Form.Group controlId="description">
