@@ -61,7 +61,7 @@ const CartScreen = ({ match, location, history }) => {
                       </Col>
                       <Col md={2}>
                         <span>&#8358;</span>
-                        {item.price}
+                        {item.price.toLocaleString("en-US")}.00
                       </Col>
                       <Col md={2}>
                         <Form.Control
@@ -106,7 +106,8 @@ const CartScreen = ({ match, location, history }) => {
                   <span>&#8358;</span>
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}
+                    .toLocaleString("en-US")}
+                  .00
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Button

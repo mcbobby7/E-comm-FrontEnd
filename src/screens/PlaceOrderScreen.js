@@ -14,19 +14,19 @@ const PlaceOrderScreen = ({ history }) => {
 
   // Calculate prices
   const addDecimals = (num) => {
-    return (Math.round(num * 100) / 100).toFixed(2);
+    return Math.round(num * 100) / 100;
   };
 
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
-  cart.taxPrice = addDecimals(Number((0.05 * cart.itemsPrice).toFixed(2)));
-  cart.totalPrice = (
+  // cart.taxPrice = addDecimals(Number(0.05 * cart.itemsPrice));
+  cart.taxPrice = 0;
+  cart.totalPrice =
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
-  ).toFixed(2);
+    Number(cart.taxPrice);
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
@@ -43,7 +43,7 @@ const PlaceOrderScreen = ({ history }) => {
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
+        paymentMethod: "PayPal",
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
@@ -100,8 +100,9 @@ const PlaceOrderScreen = ({ history }) => {
                           </Col>
                           <Col md={4}>
                             {item.qty} x <span>&#8358;</span>
-                            {item.price} = <span>&#8358;</span>
-                            {item.qty * item.price}
+                            {item.price.toLocaleString("en-US")}.00 ={" "}
+                            <span>&#8358;</span>
+                            {(item.qty * item.price).toLocaleString("en-US")}.00
                           </Col>
                         </Row>
                       </ListGroup.Item>
@@ -122,7 +123,7 @@ const PlaceOrderScreen = ({ history }) => {
                     <Col>Items</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {cart.itemsPrice}
+                      {cart.itemsPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -131,7 +132,7 @@ const PlaceOrderScreen = ({ history }) => {
                     <Col>Shipping</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {cart.shippingPrice}
+                      {cart.shippingPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -140,7 +141,7 @@ const PlaceOrderScreen = ({ history }) => {
                     <Col>Tax</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {cart.taxPrice}
+                      {cart.taxPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -149,7 +150,7 @@ const PlaceOrderScreen = ({ history }) => {
                     <Col>Total</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {cart.totalPrice}
+                      {cart.totalPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>

@@ -50,7 +50,7 @@ const Product = ({ product }) => {
       >
         <Card.Text style={{ fontSize: "15px" }} as="h3">
           <span>&#8358;</span>
-          {product.price}
+          {product.price.toLocaleString("en-US")}.00
         </Card.Text>
         <div>
           <FileCopyIcon

@@ -50,22 +50,16 @@ const HomeScreen = ({ match }) => {
   const [errorMessage, setErrorMessage] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("/api/products/categories/Latest")
-      .then((response) => {
-        console.log(response);
-        if (!response.data.hasError) {
-          setLatest(response.data.products);
-          setLatestLoading(false);
-        } else {
-          setError(true);
-          setErrorMessage("Error loading data please refresh page.");
-        }
-      })
-      .catch((err) => {
+    axios.get("/api/products/categories/Latest").then((response) => {
+      console.log(response);
+      if (!response.data.hasError) {
+        setLatest(response.data.products);
+        setLatestLoading(false);
+      } else {
         setError(true);
         setErrorMessage("Error loading data please refresh page.");
-      });
+      }
+    });
     axios.get("/api/products/categories/Sports").then((response) => {
       if (!response.data.hasError) {
         setSports(response.data.products);

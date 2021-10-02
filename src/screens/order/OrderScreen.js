@@ -4,9 +4,15 @@ import { Row, Col, ListGroup, Image, Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message";
 import Loader from "../../components/dash-loader/loader";
-import { getOrderDetails, deliverOrder } from "../../actions/orderActions";
+import {
+  getOrderDetails,
+  deliverOrder,
+  payOrder,
+} from "../../actions/orderActions";
 import Nav from "../../components/nav/nav";
 import Footer from "../../components/Footer";
+import { PaystackButton } from "react-paystack";
+import axios from "axios";
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -24,12 +30,50 @@ const OrderScreen = ({ match, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const publicKey = "pk_test_8b4f5f4c86233ec5ab09207fe044969824ad211a";
+
+  const verifyPayment = (data) => {
+    const headers = {
+      Authorization: "Bearer sk_test_8f5a0e4557737eea4edf050e7fd79e9bcfc72416",
+    };
+    axios
+      .get(`https://api.paystack.co/transaction/verify/${data.trxref}`, {
+        headers,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status) {
+          dispatch(payOrder(orderId));
+        }
+      });
+  };
+  let componentProps = {
+    email: "",
+    amount: "",
+    metadata: {
+      name: "",
+      phone: "",
+    },
+    publicKey,
+    text: "Pay Now",
+    onSuccess: (data) => verifyPayment(data),
+    onClose: () => console.log(""),
+  };
+  //   message: "Approved"
+  // reference: "T353535159833405"
+  // status: "success"
+  // trans: "1363215266"
+  // transaction: "1363215266"
+  // trxref: "T353535159833405"
 
   if (!loading) {
     // Calculate prices
     console.log(order);
+    componentProps.email = order.user.email;
+    componentProps.metadata.name = order.user.email;
+    componentProps.amount = order.totalPrice * 100;
     const addDecimals = (num) => {
-      return (Math.round(num * 100) / 100).toFixed(2);
+      return Math.round(num * 100) / 100;
     };
 
     order.itemsPrice = addDecimals(
@@ -127,8 +171,9 @@ const OrderScreen = ({ match, history }) => {
                           </Col>
                           <Col md={4}>
                             {item.qty} x <span>&#8358;</span>
-                            {item.price} = <span>&#8358;</span>
-                            {item.qty * item.price}
+                            {item.price.toLocaleString("en-US")}.00 ={" "}
+                            <span>&#8358;</span>
+                            {(item.qty * item.price).toLocaleString("en-US")}.00
                           </Col>
                         </Row>
                       </ListGroup.Item>
@@ -149,7 +194,7 @@ const OrderScreen = ({ match, history }) => {
                     <Col>Items</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {order.itemsPrice}
+                      {order.itemsPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -158,14 +203,16 @@ const OrderScreen = ({ match, history }) => {
                     <Col>Shipping</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {order.shippingPrice}
+                      {order.shippingPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Tax</Col>
-                    <Col>${order.taxPrice}</Col>
+                    <Col>
+                      &#8358;{order.taxPrice.toLocaleString("en-US")}.00
+                    </Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -173,7 +220,7 @@ const OrderScreen = ({ match, history }) => {
                     <Col>Total</Col>
                     <Col>
                       <span>&#8358;</span>
-                      {order.totalPrice}
+                      {order.totalPrice.toLocaleString("en-US")}.00
                     </Col>
                   </Row>
                 </ListGroup.Item>
@@ -183,6 +230,11 @@ const OrderScreen = ({ match, history }) => {
                     <Button type="button" className="btn btn-block">
                       Pay
                     </Button>{" "}
+                    <PaystackButton
+                      className="btn btn-block"
+                      style={{ backgroundColor: "black" }}
+                      {...componentProps}
+                    />
                   </ListGroup.Item>
                 )}
 

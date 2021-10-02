@@ -88,7 +88,7 @@ const GridCard = ({ propertyProp }) => {
         <div>
           <Card.Text as="h3">
             <span>&#8358;</span>
-            {propertyProp.price}
+            {propertyProp.price.toLocaleString("en-US")}.00
           </Card.Text>
         </div>
         <SpeedDial

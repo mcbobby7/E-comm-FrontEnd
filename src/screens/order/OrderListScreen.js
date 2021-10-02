@@ -58,7 +58,7 @@ const OrderListScreen = ({ history }) => {
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>
                     <span>&#8358;</span>
-                    {order.totalPrice}
+                    {order.totalPrice.toLocaleString("en-US")}.00
                   </td>
                   <td>
                     {order.isPaid ? (
