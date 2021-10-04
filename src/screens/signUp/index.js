@@ -82,7 +82,7 @@ const SignUpScreen = ({ location, history }) => {
           />
           <h2>Sign Up</h2>
           <label className="label">
-            Email
+            Name
             <input
               type="text"
               required

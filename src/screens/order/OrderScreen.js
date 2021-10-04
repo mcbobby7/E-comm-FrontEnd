@@ -23,10 +23,10 @@ const OrderScreen = ({ match, history }) => {
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { loading: loadingPay } = orderPay;
+  const { loading: loadingPay, success: paySuccess } = orderPay;
 
   const orderDeliver = useSelector((state) => state.orderDeliver);
-  const { loading: loadingDeliver } = orderDeliver;
+  const { loading: loadingDeliver, success: orderSuccess } = orderDeliver;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -43,7 +43,13 @@ const OrderScreen = ({ match, history }) => {
       .then((response) => {
         console.log(response.data);
         if (response.data.status) {
-          dispatch(payOrder(orderId));
+          let details = {
+            id: data.trxref,
+            status: data.status,
+            update_time: new Date(),
+            email_address: order.user.email,
+          };
+          dispatch(payOrder(orderId, details));
         }
       });
   };
@@ -65,6 +71,12 @@ const OrderScreen = ({ match, history }) => {
   // trans: "1363215266"
   // transaction: "1363215266"
   // trxref: "T353535159833405"
+
+  if (paySuccess || orderSuccess) {
+    dispatch({ type: "ORDER_PAY_RESET" });
+    dispatch({ type: "ORDER_DELIVER_RESET" });
+    dispatch(getOrderDetails(orderId));
+  }
 
   if (!loading) {
     // Calculate prices
@@ -227,12 +239,9 @@ const OrderScreen = ({ match, history }) => {
                 {!order.isPaid && (
                   <ListGroup.Item>
                     {loadingPay && <Loader />}
-                    <Button type="button" className="btn btn-block">
-                      Pay
-                    </Button>{" "}
+                    <div style={{ backgroundColor: "black" }}></div>
                     <PaystackButton
                       className="btn btn-block"
-                      style={{ backgroundColor: "black" }}
                       {...componentProps}
                     />
                   </ListGroup.Item>
