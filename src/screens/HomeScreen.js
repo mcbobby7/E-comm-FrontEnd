@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Meta from "../components/Meta";
 import axios from "axios";
-import { listCatProducts } from "../actions/productActions";
 import ImageSlider from "../components/slider/slider";
 import LoadingList from "../components/slider/loadingList";
 import Banner from "../components/banner/banner";
@@ -15,15 +13,8 @@ import banner9 from "./images/banner10.jpg";
 import banner5 from "./images/banner12.jpg";
 import banner7 from "./images/banner7.jpg";
 import banner8 from "./images/banner8.jpg";
-import Axios from "axios";
 
 const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword;
-
-  const pageNumber = match.params.pageNumber || 1;
-
-  const dispatch = useDispatch();
-
   // const productList = useSelector((state) => state.productCatList);
   // const { loading, error, products, page, pages } = productList
   const [latest, setLatest] = useState([]);

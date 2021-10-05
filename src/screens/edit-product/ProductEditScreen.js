@@ -13,10 +13,6 @@ import {
 import { PRODUCT_UPDATE_RESET } from "../../constants/productConstants";
 import Nav from "../../components/nav/nav";
 import Footer from "../../components/Footer";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;

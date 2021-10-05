@@ -21,8 +21,6 @@ import {
   PRODUCT_TOP_REQUEST,
   PRODUCT_TOP_SUCCESS,
   PRODUCT_TOP_FAIL,
-  PRODUCT_CAT_REQUEST,
-  PRODUCT_CAT_SUCCESS,
   PRODUCT_CAT_FAIL,
 } from "../constants/productConstants";
 import { toast } from "react-toastify";
