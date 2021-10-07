@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import logo from "./images/logoBlue.png";
 
 const Footer = () => {
@@ -17,9 +16,8 @@ const Footer = () => {
             <div className="col-md-8 offset-md-2">
               <div className="main-content">
                 <p>
-                  Integer vel turpis ultricies, lacinia ligula id, lobortis
-                  augue. Vivamus porttitor dui id dictum efficitur. Phasellus
-                  vel interdum elit.
+                  Subscribe to our news letter to get regular updates on new
+                  products and notifications.
                 </p>
                 <div className="container">
                   <form id="subscribe" action="" method="get">
@@ -64,7 +62,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="col-md-12">
-              <div className="footer-menu">
+              {/* <div className="footer-menu">
                 <ul>
                   <li>
                     <Link to="/">Home</Link>
@@ -79,31 +77,31 @@ const Footer = () => {
                     <Link to="/">Contact Us</Link>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-12">
               <div className="social-icons">
                 <ul>
                   <li>
-                    <Link to="/">
+                    <a href="https://www.facebook.com/madu.bobby.1">
                       <i className="fa fa-facebook"></i>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="/">
+                    <a href="https://mobile.twitter.com/mcbobbymadu">
                       <i className="fa fa-twitter"></i>
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link to="/">
+                    <a href="https://www.linkedin.com/in/pro-mcbobby/">
                       <i className="fa fa-linkedin"></i>
-                    </Link>
+                    </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/">
                       <i className="fa fa-rss"></i>
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
@@ -116,7 +114,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="copyright-text">
-                <p>Copyright &copy; 2019 Mcbee </p>
+                <p>Copyright &copy; 2021 Mcbee </p>
               </div>
             </div>
           </div>
