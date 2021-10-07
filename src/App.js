@@ -24,10 +24,12 @@ import "./assets/css/fontawesome.css";
 // import './assets/css/owl.css'
 import "./assets/css/tooplate-main.css";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <main>
         <div>
           <Route path="/placeorder" component={PlaceOrderScreen} />

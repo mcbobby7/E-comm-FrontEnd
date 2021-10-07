@@ -1,5 +1,5 @@
 import React from "react";
-import { Style } from "./Style";
+import { Style, Style1 } from "./Style";
 import data from "./data";
 import Card from "./Card";
 
@@ -10,6 +10,7 @@ class ImageSlider extends React.Component {
       properties: props.properties,
       property: data.properties[0],
       position: 1.4,
+      position1: 0.2,
     };
   }
 
@@ -29,28 +30,45 @@ class ImageSlider extends React.Component {
   render() {
     const { properties } = this.state;
     return (
-      <Style num={this.state.position}>
-        <button onClick={() => this.prevProperty()} className="prev_button">
-          <i className="fa fa-arrow-left"></i>
-        </button>
+      <>
+        <Style num={this.state.position}>
+          <button onClick={() => this.prevProperty()} className="prev_button">
+            <i className="fa fa-arrow-left"></i>
+          </button>
 
-        <button onClick={() => this.nextProperty()} className="next_button">
-          <i className="fa fa-arrow-right"></i>
-        </button>
+          <button onClick={() => this.nextProperty()} className="next_button">
+            <i className="fa fa-arrow-right"></i>
+          </button>
 
-        <div className={`cards-slider active-slide-${this.state.position}`}>
-          <div
-            className="cards-slider-wrapper"
-            style={{
-              transform: `translateX(-${this.state.position * 100}%)`,
-            }}
-          >
-            {properties.map((propertyItem) => (
-              <Card key={propertyItem._id} propertyProp={propertyItem} />
-            ))}
+          <div className={`cards-slider active-slide-${this.state.position}`}>
+            <div
+              className="cards-slider-wrapper"
+              style={{
+                transform: `translateX(-${this.state.position * 100}%)`,
+              }}
+            >
+              {properties.map((propertyItem) => (
+                <Card key={propertyItem._id} propertyProp={propertyItem} />
+              ))}
+            </div>
           </div>
-        </div>
-      </Style>
+        </Style>
+
+        <Style1 num={this.state.position1}>
+          <div className={`cards-slider active-slide-${this.state.position1}`}>
+            <div
+              className="cards-slider-wrapper"
+              style={{
+                transform: `translateX(-${this.state.position1 * 100}%)`,
+              }}
+            >
+              {properties.map((propertyItem) => (
+                <Card key={propertyItem._id} propertyProp={propertyItem} />
+              ))}
+            </div>
+          </div>
+        </Style1>
+      </>
     );
   }
 }
